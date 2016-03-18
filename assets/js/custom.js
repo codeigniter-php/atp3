@@ -12,10 +12,12 @@ $(document).ready(function(){
                     });
                 });
     $('#myTable').dataTable({
-        scrollY: 270,
+        scrollX: 300,
+        scrollY: 300,
         
     });
     $('#myTable1').dataTable({
+        scrollX: 270,
         scrollY: 270,
         
     });
@@ -27,3 +29,4 @@ $(document).ready(function(){
    
 
 });
+

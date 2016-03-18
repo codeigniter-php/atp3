@@ -26,15 +26,36 @@
 				          Request Make Up
 				        </a>
 				             <table class="table" id="myTable">
-				             <thead>
+				              <thead>
 				                   <tr>
-				                   		<th>Course Name</th>
-				                   		<th>Teacher Name</th>
-				                   		<th>Start Time</th>
-				                   		<th>End Time</th>
-				                   		<th>Room No</th>
-				                   		<th>Days In Week</th>
-				                   		<th>Status</th>
+				                   		
+				                   		<th>Day</th>
+				                   		<th>Room</th>
+				                   		<th>8:00</th>
+				                   		<th>8:30</th>
+				                   		<th>9:00</th>
+				                   		<th>9:30</th>
+				                   		<th>10:00</th>
+				                   		<th>10:30</th>
+				                   		<th>11:00</th>
+				                   		<th>11:30</th>
+				                   		<th>12:00</th>
+				                   		<th>12:30</th>
+				                   		<th>01:00</th>
+				                   		<th>01:30</th>
+				                   		<th>02:00</th>
+				                   		<th>02:30</th>
+				                   		<th>03:00</th>
+				                   		<th>03:30</th>
+				                   		<th>04:00</th>
+				                   		<th>04:30</th>
+				                   		<th>05:00</th>
+				                   		<th>05:30</th>
+				                   		<th>06:00</th>
+				                   		<th>06:30</th>
+				                   		<th>07:00</th>
+				                   		<th>07:30</th>
+				                   		<th>8:00</th>
 				                   		
 				                   		
 				                   </tr>
@@ -42,14 +63,35 @@
 				              <tbody>
 									{info}
 									<tr>
-										<td>{class_name}</td>
-										<td>{teacher_name}</td>
-										<td>{s_time}</td>
-										<td>{e_time}</td>
-										<td>{room_no}</td>
 										<td>{days_in_week}</td>
-										<td>{status}</td>
-											
+										<td>{room}</td>
+										<td>{t1}</td>
+										<td>{t2}</td>
+										<td>{t3}</td>
+										<td>{t4}</td>
+										<td>{t5}</td>
+										<td>{t6}</td>
+										<td>{t7}</td>
+										<td>{t8}</td>
+										<td>{t9}</td>
+										<td>{t10}</td>
+										<td>{t11}</td>
+										<td>{t12}</td>
+										<td>{t13}</td>
+										<td>{t14}</td>
+										<td>{t15}</td>
+										<td>{t16}</td>
+										<td>{t17}</td>
+										<td>{t18}</td>
+										<td>{t19}</td>
+										<td>{t20}</td>
+										<td>{t21}</td>
+										<td>{t22}</td>
+										<td>{t23}</td>
+										<td>{t24}</td>
+										<td>{t25}</td>
+
+										
 									</tr>
 									{/info}
 								</tbody>

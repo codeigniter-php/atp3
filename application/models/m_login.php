@@ -11,7 +11,8 @@ class M_login extends CI_Model {
 	}
 	public function getAll()
 	{
-		 $sql = "select  c.class_name,c.teacher_name,ct.s_time,ct.status,ct.id,ct.e_time,ct.room_no,dt.days_in_week FROM class c,class_time ct, day_of_week dt where c.class_id=ct.class_id and ct.day_of_week=dt.days_id";
+		 //$sql = "select  c.class_name,c.teacher_name,ct.s_time,ct.status,ct.id,ct.e_time,ct.room_no,dt.days_in_week FROM class c,class_time ct, day_of_week dt where c.class_id=ct.class_id and ct.day_of_week=dt.days_id";
+		$sql="select * from class_schedule a,day_of_week b where a.days_id=b.id";
 		 $this->load->database();
 		 $result = $this->db->query($sql);
 		 return $result->result_array();
@@ -20,7 +21,7 @@ class M_login extends CI_Model {
 
 	public function getDays()
 	{
-		 $sql = "SELECT days_id, days_in_week FROM day_of_week";
+		 $sql = "SELECT id,days_id, days_in_week FROM day_of_week";
 		$this->load->database();
 		$result = $this->db->query($sql);
 		return $result->result_array();
@@ -36,9 +37,47 @@ class M_login extends CI_Model {
 	}
 	public function insertCourse($data)
 	{
-		$sql = "INSERT INTO class_time VALUES (null, '$data[stime]', '$data[etime]', '$data[day_of_week]','$data[room]','$data[course_name]','$data[status]')";
-		$this->load->database();
-		$this->db->query($sql);
+		$day=$data['day_of_week'];
+		$room=$data['room'];
+		
+		
+        $col=array();
+        	foreach ($data['insert'] as $b) {
+        		$col[]=$b;
+        	}
+        $count=count($col);
+        //var_dump($count);die;
+        if($count==2)
+        {
+        	$sql="UPDATE `class_schedule` SET `$col[0]` = 'R',`$col[1]` = 'R' WHERE days_id='$day' AND room='$room'";
+        	$this->load->database();
+		    $this->db->query($sql);
+        }
+        elseif ($count==3) {
+        	$sql="UPDATE `class_schedule` SET `$col[0]` = 'R',`$col[1]` = 'R',`$col[2]` = 'R' WHERE days_id='$day' AND room='$room'";
+        	$this->load->database();
+		    $this->db->query($sql);
+        }
+        elseif ($count==4) {
+        	$sql="UPDATE `class_schedule` SET `$col[0]` = 'R',`$col[1]` = 'R',`$col[2]` = 'R',`$col[3]` = 'R' WHERE days_id='$day' AND room='$room'";
+        	$this->load->database();
+		    $this->db->query($sql);
+        }
+        elseif ($count==5) {
+        	$sql="UPDATE `class_schedule` SET `$col[0]` = 'R',`$col[1]` = 'R',`$col[2]` = 'R',`$col[3]` = 'R',`$col[4]` = 'R' WHERE days_id='$day' AND room='$room'";
+        	$this->load->database();
+		    $this->db->query($sql);
+        }
+
+        elseif ($count==7) {
+        	$sql="UPDATE `class_schedule` SET `$col[0]` = 'R',`$col[1]` = 'R',`$col[2]` = 'R',`$col[3]` = 'R',`$col[4]` = 'R',`$col[5]` = 'R',`$col[6]` = 'R' WHERE days_id='$day' AND room='$room'";
+        	$this->load->database();
+		    $this->db->query($sql);
+        }
+
+		// $sql = "UPDATE $data['insert'] SET $data['insert']='R' WHERE room='401'";
+		// $this->load->database();
+		// $this->db->query($sql);
 
 	}
 	public function delete($id)

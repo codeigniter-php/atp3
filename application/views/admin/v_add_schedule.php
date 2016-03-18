@@ -20,10 +20,95 @@
 		<div class="col-lg-10">
 			<div class="row">
 				<div class="col-lg-10">
+				<div class="row">
+					<table class="table" id="myTable">
+				            <thead>
+				                   <tr>
+				                   		
+				                   		<th>Day</th>
+				                   		<th>Room</th>
+				                   		<th>8:00</th>
+				                   		<th>8:30</th>
+				                   		<th>9:00</th>
+				                   		<th>9:30</th>
+				                   		<th>10:00</th>
+				                   		<th>10:30</th>
+				                   		<th>11:00</th>
+				                   		<th>11:30</th>
+				                   		<th>12:00</th>
+				                   		<th>12:30</th>
+				                   		<th>01:00</th>
+				                   		<th>01:30</th>
+				                   		<th>02:00</th>
+				                   		<th>02:30</th>
+				                   		<th>03:00</th>
+				                   		<th>03:30</th>
+				                   		<th>04:00</th>
+				                   		<th>04:30</th>
+				                   		<th>05:00</th>
+				                   		<th>05:30</th>
+				                   		<th>06:00</th>
+				                   		<th>06:30</th>
+				                   		<th>07:00</th>
+				                   		<th>07:30</th>
+				                   		<th>8:00</th>
+				                   		
+				                   		
+				                   </tr>
+				              </thead>
+				              <tbody>
+									{info}
+									<tr>
+										<td>{days_in_week}</td>
+										<td>{room}</td>
+										<td>{t0}</td>
+										<td>{t0.5}</td>
+										<td>{t1}</td>
+										<td>{t1.5}</td>
+										<td>{t2}</td>
+										<td>{t2.5}</td>
+										<td>{t3}</td>
+										<td>{t3.5}</td>
+										<td>{t4}</td>
+										<td>{t4.5}</td>
+										<td>{t5}</td>
+										<td>{t5.5}</td>
+										<td>{t6}</td>
+										<td>{t6.5}</td>
+										<td>{t7}</td>
+										<td>{t7.5}</td>
+										<td>{t8}</td>
+										<td>{t8.5}</td>
+										<td>{t9}</td>
+										<td>{t9.5}</td>
+										<td>{t10}</td>
+										<td>{t10.5}</td>
+										<td>{t11}</td>
+										<td>{t11.5}</td>
+										<td>{t12}</td>
+
+										
+									</tr>
+									{/info}
+								</tbody>
+						    </table>
+				</div>
 				<h3>Add Class Schedule</h3>
 					<form method="post">
 							<table class="table table-bordered table-striped table-highlight">
-								<tr>
+							<tr>
+							  		<td>Day</td>
+							  		<td>
+							  		<select class="form-control" name="day_of_week">
+							  		    <option value="" selected="">select days</option>
+							  			{dayslist}
+							  			<option value="{id}">{days_in_week}</option>
+							  			{/dayslist}
+							  		</select>
+							  		<div class="error1"><?php echo form_error('day_of_week'); ?>
+							  		</td>
+	  	                        </tr>
+								<!--<tr>
 							  		<td>Select Course</td>
 							  		<td>
 							  		<select class="form-control" name="course_name">
@@ -32,9 +117,9 @@
 							  			<option value="{class_id}">{class_name}</option>
 							  			{/courselist}
 							  		</select>
-							  		<div class="error1"><?php echo form_error('course_name'); ?></div>
+							  		<div class="error1"><?php //echo form_error('course_name'); ?></div>
 							  		</td>
-	  	                        </tr>
+	  	                        </tr>-->
 								<tr>
 									<td>Start Time</td>
 									<td><input class="form-control input-md" type="text" name="stime" id="time" value="<?php echo set_value('stime'); ?>"/>
@@ -46,18 +131,7 @@
 									<td><input class="form-control input-md" type="text" name="etime" id="time1" value="<?php echo set_value('etime'); ?>" />
 									<div class="error1"><?php echo form_error('etime'); ?></div></td>
 								</tr>
-								<tr>
-							  		<td>Days In Week</td>
-							  		<td>
-							  		<select class="form-control" name="day_of_week">
-							  		    <option value="" selected="">select days</option>
-							  			{dayslist}
-							  			<option value="{days_id}">{days_in_week}</option>
-							  			{/dayslist}
-							  		</select>
-							  		<div class="error1"><?php echo form_error('day_of_week'); ?>
-							  		</td>
-	  	                        </tr>
+								
 								<tr>
 									<td>Room No</td>
 									<td><input class="form-control input-md" type="text" name="room"  value="<?php echo set_value('room'); ?>" />

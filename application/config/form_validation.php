@@ -20,11 +20,11 @@ $config = array(
 							'label' => 'room',
 							'rules' => 'required'
 						 ),
-           	        array(
+           	        /*array(
 							'field' => 'course_name',
 							'label' => 'course_name',
 							'rules' => 'callback_checkSelected'
-						 ),
+						 ),*/
            	        array(
 							'field' => 'stime',
 							'label' => 'start time',

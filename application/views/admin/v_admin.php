@@ -28,30 +28,68 @@
 				             <table class="table" id="myTable">
 				             <thead>
 				                   <tr>
-				                   		<th>Course Name</th>
-				                   		<th>Teacher Name</th>
-				                   		<th>Start Time</th>
-				                   		<th>End Time</th>
-				                   		<th>Room No</th>
-				                   		<th>Days In Week</th>
-				                   		<th>Status</th>
-				                   		<th>Delete</th>
-				                   		<th>Edit</th>
+				                   		
+				                   		<th>Day</th>
+				                   		<th>Room</th>
+				                   		<th>8:00</th>
+				                   		<th>8:30</th>
+				                   		<th>9:00</th>
+				                   		<th>9:30</th>
+				                   		<th>10:00</th>
+				                   		<th>10:30</th>
+				                   		<th>11:00</th>
+				                   		<th>11:30</th>
+				                   		<th>12:00</th>
+				                   		<th>12:30</th>
+				                   		<th>01:00</th>
+				                   		<th>01:30</th>
+				                   		<th>02:00</th>
+				                   		<th>02:30</th>
+				                   		<th>03:00</th>
+				                   		<th>03:30</th>
+				                   		<th>04:00</th>
+				                   		<th>04:30</th>
+				                   		<th>05:00</th>
+				                   		<th>05:30</th>
+				                   		<th>06:00</th>
+				                   		<th>06:30</th>
+				                   		<th>07:00</th>
+				                   		<th>07:30</th>
+				                   		<th>8:00</th>
+				                   		
 				                   		
 				                   </tr>
 				              </thead>
 				              <tbody>
 									{info}
 									<tr>
-										<td>{class_name}</td>
-										<td>{teacher_name}</td>
-										<td>{s_time}</td>
-										<td>{e_time}</td>
-										<td>{room_no}</td>
 										<td>{days_in_week}</td>
-										<td>{status}</td>
-										<td><a href="/atp3/Admin/delete/{id}" class="btn btn-primary">Delete</a></td>
-										<td><a href="/atp3/Admin/delete/{id}" class="btn btn-primary">Edit</a></td>
+										<td>{room}</td>
+										<td>{t0}</td>
+										<td>{t0.5}</td>
+										<td>{t1}</td>
+										<td>{t1.5}</td>
+										<td>{t2}</td>
+										<td>{t2.5}</td>
+										<td>{t3}</td>
+										<td>{t3.5}</td>
+										<td>{t4}</td>
+										<td>{t4.5}</td>
+										<td>{t5}</td>
+										<td>{t5.5}</td>
+										<td>{t6}</td>
+										<td>{t6.5}</td>
+										<td>{t7}</td>
+										<td>{t7.5}</td>
+										<td>{t8}</td>
+										<td>{t8.5}</td>
+										<td>{t9}</td>
+										<td>{t9.5}</td>
+										<td>{t10}</td>
+										<td>{t10.5}</td>
+										<td>{t11}</td>
+										<td>{t11.5}</td>
+										<td>{t12}</td>
 
 										
 									</tr>

@@ -14,16 +14,37 @@ class User extends CI_Controller {
 	public function index()
 	{
 
-		$data['name']=$this->session->userdata('name');
+		
 		
 
+		$data=$this->m_login->getAll();
+	
+		$list=array();
+		foreach ($data as $d) {
 
-		$data['info']=$this->m_login->getAll();
-       
+			for($i=1;$i<26;$i++)
+			{
+				if($d['t'.$i]=="R")
+				{
+					$d['t'.$i]="R";
+				}
+				else
+				{
+					$d['t'.$i]="N";
+
+				}
+
+
+			}
+			array_push($list,$d);
+			
+
+			
+		}
+
+        $data['name']=$this->session->userdata('name');
+        $data['info']=$list;
         
-		
-        //var_dump($data['info']);die();
-		$data['title']="User";
 		$this->load->view('template/header',$data);
 		$this->parser->parse('user/v_user',$data);
 		$this->load->view('template/footer');

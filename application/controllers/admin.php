@@ -14,14 +14,40 @@ class Admin extends CI_Controller {
 	public function index()
 	{
 		
-	    $data['name']=$this->session->userdata('name');
+	    
 		
-
-		$data['info']=$this->m_login->getAll();
-       
         
-		
-        //var_dump($data['info']);die();
+		$data=$this->m_login->getAll();
+	
+		$list=array();
+		foreach ($data as $d) {
+
+			for($i=0;$i<=12;$i=$i+.5)
+			{
+				if($d['t'.$i]=="R")
+				{
+					$d['t'.$i]="<div class='pius'>Regular Class</div>";
+
+				}
+				else
+				{
+					$d['t'.$i]="No Class";
+
+				}
+
+
+			}
+			array_push($list,$d);
+			
+
+			
+		}
+
+       $data['name']=$this->session->userdata('name');
+       $data['info']=$list;
+        
+	 
+        //var_dump($data);die();
 		$data['title']="Admin";
 		$this->load->view('template/header',$data);
 		$this->parser->parse('admin/v_admin',$data);
@@ -31,37 +57,122 @@ class Admin extends CI_Controller {
 	{
 		if($this->input->get_post('buttonSave'))
 		{
-			$this->form_validation->set_message('required', 'Please enter %s');
-			
-             if($this->form_validation->run() == false)
-		     {
-                $data['name']=$this->session->userdata('name');
-				$data['dayslist']=$this->m_login->getDays();
-				$data['courselist']=$this->m_login->getCourse();
-				//var_dump($data['dayslist']);die();
-				$data['title']="Admin";
-				$this->load->view('template/header',$data);
-				$this->parser->parse('admin/v_add_schedule',$data);
-				$this->load->view('template/footer');
+				$this->form_validation->set_message('required', 'Please enter %s');
+				
+	             if($this->form_validation->run() == false)
+			     {
+	               $data=$this->m_login->getAll();
+		
+					$list=array();
+					foreach ($data as $d) {
+
+						for($i=0;$i<=12;$i=$i+.5)
+						{
+							if($d['t'.$i]=="R")
+							{
+								$d['t'.$i]="<div class='pius'>Regular Class</div>";
+							}
+							else
+							{
+								$d['t'.$i]="No Class";
+
+							}
+
+
+						}
+						array_push($list,$d);
+						
+
+						
+					}
+
+			       $data['name']=$this->session->userdata('name');
+			       $data['info']=$list;
+				   $data['dayslist']=$this->m_login->getDays();
+					//$data['courselist']=$this->m_login->getCourse();
+					//var_dump($data['dayslist']);die();
+				   $data['title']="Admin";
+				   $this->load->view('template/header',$data);
+				   $this->parser->parse('admin/v_add_schedule',$data);
+				   $this->load->view('template/footer');
 			
 		     }
 		     else
 		     {
-		     	$data['course_name'] = $this->input->get_post('course_name');
+		     	//$data['course_name'] = $this->input->get_post('course_name');
+		     	//$data['day_of_week'] = $this->input->get_post('day_of_week');
 			    $data['stime'] = $this->input->get_post('stime');
 			    $data['etime'] = $this->input->get_post('etime');
-			    $data['day_of_week'] = $this->input->get_post('day_of_week');
-			    $data['room'] = $this->input->get_post('room');
-			    $data['status'] = $this->input->get_post('status');
+			    $start_time=date("H:i", strtotime($data['stime']));
+			    $end_time=date("H:i", strtotime($data['etime']));
+			    $num1=(float)str_replace(':','.',$start_time);
+			    $num2=(float)str_replace(':','.',$end_time);
+			    $reminder1=fmod($num1,.5);
+			    $reminder2=fmod($num2,.5);
+			    if($reminder1!=0)
+			    {
+			    	$num1+=.20;
+			    }
+			    elseif ($reminder2!=0) {
+			    	$num2+=.20;
+			    }
+			    $s_time=$num1-8;
+			    $e_time=$num2-8;
+                $list=array();
+                
+			    for($i=$s_time;$i<=$e_time;$i=$i+.5)
+			    {
+			    	$list[]="T$i";
+			    	
+			    }
+             
+                $data['insert']=$list;
+                $data['room']=$this->input->get_post('room');
+                $data['day_of_week'] = $this->input->get_post('day_of_week');
+
+                
+
+			    
+			    
+
+			    
+			    
 			    $this->m_login->insertCourse($data);
-			    redirect('http://localhost/atp3/Admin/index', 'refresh');
+			    redirect('http://localhost/atp3/Admin/add', 'refresh');
 		     }
 
 		}
 		else
 		{
-			$data['name']=$this->session->userdata('name');
+			$data=$this->m_login->getAll();
+	
+				$list=array();
+				foreach ($data as $d) {
+
+					for($i=0;$i<=12;$i=$i+.5)
+					{
+						if($d['t'.$i]=="R")
+						{
+							$d['t'.$i]="<div class='pius'>Regular Class</div>";
+						}
+						else
+						{
+							$d['t'.$i]="No Class";
+
+						}
+
+
+					}
+					array_push($list,$d);
+					
+
+					
+				}
+
+		    $data['name']=$this->session->userdata('name');
+		    $data['info']=$list;
 			$data['dayslist']=$this->m_login->getDays();
+
 			$data['courselist']=$this->m_login->getCourse();
 			//var_dump($data['dayslist']);die();
 			$data['title']="Admin";
