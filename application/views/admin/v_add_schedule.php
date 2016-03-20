@@ -59,7 +59,7 @@
 				              <tbody>
 									{info}
 									<tr>
-										<td>{days_in_week}</td>
+										<td><span class='clickable' data-cell='{id}' >{days_in_week}</span></td>
 										<td>{room}</td>
 										<td>{t0}</td>
 										<td>{t0.5}</td>

@@ -22,15 +22,15 @@ class User extends CI_Controller {
 		$list=array();
 		foreach ($data as $d) {
 
-			for($i=1;$i<26;$i++)
+			for($i=0;$i<=12;$i=$i+.5)
 			{
 				if($d['t'.$i]=="R")
 				{
-					$d['t'.$i]="R";
+					$d['t'.$i]="<div class='pius'>Regular Class</div>";
 				}
 				else
 				{
-					$d['t'.$i]="N";
+					$d['t'.$i]="<span>No Class</span>";
 
 				}
 

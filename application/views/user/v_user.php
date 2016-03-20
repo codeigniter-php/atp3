@@ -65,31 +65,31 @@
 									<tr>
 										<td>{days_in_week}</td>
 										<td>{room}</td>
+										<td>{t0}</td>
+										<td>{t0.5}</td>
 										<td>{t1}</td>
+										<td>{t1.5}</td>
 										<td>{t2}</td>
+										<td>{t2.5}</td>
 										<td>{t3}</td>
+										<td>{t3.5}</td>
 										<td>{t4}</td>
+										<td>{t4.5}</td>
 										<td>{t5}</td>
+										<td>{t5.5}</td>
 										<td>{t6}</td>
+										<td>{t6.5}</td>
 										<td>{t7}</td>
+										<td>{t7.5}</td>
 										<td>{t8}</td>
+										<td>{t8.5}</td>
 										<td>{t9}</td>
+										<td>{t9.5}</td>
 										<td>{t10}</td>
+										<td>{t10.5}</td>
 										<td>{t11}</td>
+										<td>{t11.5}</td>
 										<td>{t12}</td>
-										<td>{t13}</td>
-										<td>{t14}</td>
-										<td>{t15}</td>
-										<td>{t16}</td>
-										<td>{t17}</td>
-										<td>{t18}</td>
-										<td>{t19}</td>
-										<td>{t20}</td>
-										<td>{t21}</td>
-										<td>{t22}</td>
-										<td>{t23}</td>
-										<td>{t24}</td>
-										<td>{t25}</td>
 
 										
 									</tr>

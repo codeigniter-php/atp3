@@ -31,7 +31,7 @@ class Admin extends CI_Controller {
 				}
 				else
 				{
-					$d['t'.$i]="No Class";
+					$d['t'.$i]="<span class='clickableandDraggable' data-cell='$i' >No Class</span>";
 
 				}
 
@@ -74,7 +74,7 @@ class Admin extends CI_Controller {
 							}
 							else
 							{
-								$d['t'.$i]="No Class";
+								$d['t'.$i]="<span class='clickableandDraggable' data-cell='$i' >No Class</span>";
 
 							}
 
@@ -149,6 +149,8 @@ class Admin extends CI_Controller {
 				$list=array();
 				foreach ($data as $d) {
 
+					
+
 					for($i=0;$i<=12;$i=$i+.5)
 					{
 						if($d['t'.$i]=="R")
@@ -157,7 +159,7 @@ class Admin extends CI_Controller {
 						}
 						else
 						{
-							$d['t'.$i]="No Class";
+							$d['t'.$i]="<span class='clickableandDraggable' data-cell='$i' >No Class</span>";
 
 						}
 
