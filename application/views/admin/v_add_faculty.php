@@ -9,7 +9,7 @@
 			</div>
 	</div>
 	<div class="row" style="margin-top: 10px;">
-		<div class="col-lg-3">
+		<div class="col-lg-2">
 			<ul class="nav nav-pills nav-stacked">
 		      <li role="presentation" ><a href="<?php echo base_url();?>Admin/index">Class Schedule</a></li>
 		      <li role="presentation" ><a href="<?php echo base_url();?>Admin/addRoom">Add Room</a></li>
@@ -18,7 +18,7 @@
 		      <li role="presentation" ><a href="<?php echo base_url();?>Admin/booking">View Booking</a></li>
 		    </ul>
 		</div>
-		<div class="col-lg-9">
+		<div class="col-lg-10">
 			<div class="row">
 				<div class="col-lg-9">
 				<h3>Add Faculty for class</h3>
