@@ -217,5 +217,13 @@ class M_login extends CI_Model {
 
 	}
 
+	public function addRoom($data)
+	{
+		 $sql="INSERT INTO class_schedule VALUES(null,$data[day_of_week],'$data[room]',null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null)";
+         $this->load->database();
+		 $this->db->query($sql);
+
+	}
+
 
 }

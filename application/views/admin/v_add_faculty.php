@@ -12,6 +12,7 @@
 		<div class="col-lg-3">
 			<ul class="nav nav-pills nav-stacked">
 		      <li role="presentation" ><a href="<?php echo base_url();?>Admin/index">Class Schedule</a></li>
+		      <li role="presentation" ><a href="<?php echo base_url();?>Admin/addRoom">Add Room</a></li>
 		      <li role="presentation" ><a href="<?php echo base_url();?>Admin/add">Add Schedule</a></li>
 		      <li role="presentation" class="active"><a href="<?php echo base_url();?>Admin/addFaculty">Add Faculty</a></li>
 		      <li role="presentation" ><a href="<?php echo base_url();?>Admin/booking">View Booking</a></li>

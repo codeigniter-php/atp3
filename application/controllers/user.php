@@ -14,9 +14,14 @@ class User extends CI_Controller {
 	public function index()
 	{
 
+		if($this->session->userdata('type')!="teacher"  || $this->session->userdata('logged_in')==null ) 
+         {
+         	$this->session->sess_destroy();
+         	redirect('login');
+         }
 		
-		
-
+        else
+        {
 		$data=$this->m_login->getAll();
 	
 		$list=array();
@@ -48,15 +53,24 @@ class User extends CI_Controller {
 
         $data['name']=$this->session->userdata('name');
         $data['info']=$list;
-        $data['title']="user";
+        $data['title']="Class Schedule";
 		$this->load->view('template/header',$data);
 		$this->parser->parse('user/v_user',$data);
 		$this->load->view('template/footer');
+	  }
 
 	}
 
 	public function addMakeup()
 	{
+		if($this->session->userdata('type')!="teacher"  || $this->session->userdata('logged_in')==null ) 
+         {
+         	$this->session->sess_destroy();
+         	redirect('login');
+         }
+		
+        else
+        {
 
 		if($this->input->get_post('buttonAdd'))
 			{
@@ -96,7 +110,7 @@ class User extends CI_Controller {
 					$data['info']=$list;
 	                $data['name']=$this->session->userdata('name');
 	                $data['dayslist']=$this->m_login->getDays();
-				    $data['title']="User";
+				    $data['title']="MakeUp";
 					$this->load->view('template/header',$data);
 					$this->parser->parse('user/v_addmakeup',$data);
 					$this->load->view('template/footer');
@@ -163,16 +177,24 @@ class User extends CI_Controller {
 		    	//var_dump($this->session->userdata('id'));die();
 			    $data['name']=$this->session->userdata('name');
 			    $data['dayslist']=$this->m_login->getDays();
-			    $data['title']="User";
+			    $data['title']="MakeUp";
 				$this->load->view('template/header',$data);
 				$this->parser->parse('user/v_addmakeup',$data);
 				$this->load->view('template/footer');
 		   }
+		}
 	}
 
 	public function viewHistory()
 	{ 
-       
+         if($this->session->userdata('type')!="teacher"  || $this->session->userdata('logged_in')==null ) 
+         {
+         	$this->session->sess_destroy();
+         	redirect('login');
+         }
+		
+        else
+        {
 
             $data['name']=$this->session->userdata('name');
 
@@ -181,10 +203,11 @@ class User extends CI_Controller {
 		    $data['info']=$this->m_login->getUserBooking($data);     
 				
 		       //var_dump($data['info']);die();
-			$data['title']="User";
+			$data['title']="History";
 			$this->load->view('template/header',$data);
 			$this->parser->parse('user/v_booking',$data);
 			$this->load->view('template/footer');
+		}
 
 	}
 	public function checkSelected1($str)

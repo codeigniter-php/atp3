@@ -44,7 +44,8 @@ class Login extends CI_Controller {
                     $userSession = array(
                   
 	                   'name'     => $info['name'],
-	                   'logged_in' => TRUE
+	                   'logged_in' => TRUE,
+	                   'type' =>'admin'
                      );
 
                     $this->session->set_userdata($userSession);
@@ -57,7 +58,8 @@ class Login extends CI_Controller {
                   
 	                   'name'     => $info['name'],
 	                   'id'       => $info['id'],
-	                   'logged_in' => TRUE
+	                   'logged_in' => TRUE,
+	                   'type' =>'teacher'
                      );
 
                     $this->session->set_userdata($userSession);
