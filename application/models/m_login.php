@@ -99,39 +99,109 @@ class M_login extends CI_Model {
 
 	public function getBooking()
 	{
-         $sql = "select c.class_name,c.teacher_name,ct.class_id,ct.s_time,ct.booking_status,ct.e_time,ct.room_no,ct.date FROM class c,booking ct where c.class_id=ct.class_id";
+         $sql = "select d.days_in_week,c.class_name, c.teacher_name, ct.class_id,ct.id,ct.s_time,ct.booking_status , ct.e_time,ct.room_no,ct.date FROM class c,booking ct,day_of_week d where c.class_id=ct.class_id and d.id=ct.days_id";
 		 $this->load->database();
 		 $result = $this->db->query($sql);
 		 return $result->result_array();
 
 
 	}
-	public function change($class_id)
+	public function change($id)
 	{  
-	    $data="";
-		$datesql="select date from booking where class_id='$class_id'";
+	    $data1="";
+		$datesql="select date,s_time,e_time,room_no,days_id from booking where id='$id'";
 		$this->load->database();
 		$result = $this->db->query($datesql);
-		$result->row_array();
-		foreach ($result->row_array() as $date)
-		{
-			$data=$date;
-		}
-
-		$val='Active('.$data.')';
+		$data1=$result->row_array();
+		//var_dump($data["date"]);
+		
+		        $data['stime'] = $data1["s_time"];
+			    $data['etime'] = $data1["e_time"];
+			    $start_time=date("H:i", strtotime($data['stime']));
+			    $end_time=date("H:i", strtotime($data['etime']));
+			    $num1=(float)str_replace(':','.',$start_time);
+			    $num2=(float)str_replace(':','.',$end_time);
+			    $reminder1=fmod($num1,.5);
+			    $reminder2=fmod($num2,.5);
+			    if($reminder1!=0)
+			    {
+			    	$num1+=.20;
+			    }
+			    elseif ($reminder2!=0) {
+			    	$num2+=.20;
+			    }
+			    $s_time=$num1-8;
+			    $e_time=$num2-8;
+                $list=array();
+                
+			    for($i=$s_time;$i<=$e_time;$i=$i+.5)
+			    {
+			    	$list[]="T$i";
+			    	
+			    }
+			    
+             
+                $data['insert']=$list;
+                $data['room']=$data1["room_no"];
+                $data['day_of_week'] =$data1["days_id"];
 
 		
 
-		$sql="UPDATE booking SET booking_status='$val' WHERE class_id='$class_id'";
+		$val='Active('.$data1["date"].')';
+
+		
+
+		$sql="UPDATE booking SET booking_status='$val' WHERE id='$id'";
 		$this->load->database();
 		$this->db->query($sql);
+
+				$day=$data['day_of_week'];
+				$room=$data['room'];
+				
+				
+		        $col=array();
+		        	foreach ($data['insert'] as $b) {
+		        		$col[]=$b;
+		        	}
+		        $count=count($col);
+		        //var_dump($count);die;
+		        if($count==2)
+		        {
+		        	$sql="UPDATE `class_schedule` SET `$col[0]` = 'M',`$col[1]` = 'M' WHERE days_id='$day' AND room='$room'";
+		        	$this->load->database();
+				    $this->db->query($sql);
+		        }
+		        elseif ($count==3) {
+		        	$sql="UPDATE `class_schedule` SET `$col[0]` = 'M',`$col[1]` = 'M',`$col[2]` = 'M' WHERE days_id='$day' AND room='$room'";
+		        	$this->load->database();
+				    $this->db->query($sql);
+		        }
+		        elseif ($count==4) {
+		        	$sql="UPDATE `class_schedule` SET `$col[0]` = 'M',`$col[1]` = 'M',`$col[2]` = 'M',`$col[3]` = 'M' WHERE days_id='$day' AND room='$room'";
+		        	$this->load->database();
+				    $this->db->query($sql);
+		        }
+		        elseif ($count==5) {
+		        	$sql="UPDATE `class_schedule` SET `$col[0]` = 'M',`$col[1]` = 'M',`$col[2]` = 'M',`$col[3]` = 'M',`$col[4]` = 'M' WHERE days_id='$day' AND room='$room'";
+		        	$this->load->database();
+				    $this->db->query($sql);
+		        }
+
+		        elseif ($count==7) {
+		        	$sql="UPDATE `class_schedule` SET `$col[0]` = 'M',`$col[1]` = 'M',`$col[2]` = 'M',`$col[3]` = 'M',`$col[4]` = 'M',`$col[5]` = 'M',`$col[6]` = 'M' WHERE days_id='$day' AND room='$room'";
+		        	$this->load->database();
+				    $this->db->query($sql);
+		        }
+                               
+
+
 
 	}
 
 	public function getUserBooking($data)
 	{
 
-		  $sql = "select DISTINCT c.class_name,c.teacher_name,ct.class_id,ct.s_time,ct.booking_status,ct.e_time,ct.room_no,ct.date FROM class c,booking ct,users u where c.class_id=ct.class_id and c.class_id='$data[class_id]'";
+		  $sql = "select d.days_in_week,c.class_name,c.teacher_name,ct.s_time,ct.booking_status,ct.e_time,ct.room_no,ct.date FROM class c,booking ct,users u,day_of_week d where d.id=ct.days_id and c.class_id=ct.class_id and u.id=c.class_id and c.class_id='$data[class_id]'";
 		 $this->load->database();
 		 $result = $this->db->query($sql);
 		 return $result->result_array();
@@ -140,7 +210,7 @@ class M_login extends CI_Model {
 	public function addMakeup($data)
 	{
          
-         $sql="INSERT INTO booking VALUES(null,'$data[class_id]','$data[stime]','$data[etime]','$data[room]','$data[status]','$data[date]')";
+         $sql="INSERT INTO booking VALUES(null,'$data[class_id]',$data[day_of_week],'$data[stime]','$data[etime]','$data[room]','$data[status]','$data[date]')";
          $this->load->database();
 		 $this->db->query($sql);
 

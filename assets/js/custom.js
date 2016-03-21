@@ -18,8 +18,8 @@ $(document).ready(function(){
         
     });
     $('#myTable1').dataTable({
-        scrollX: 270,
-        scrollY: 270,
+        
+        scrollY: 300,
         
     });
 
@@ -129,11 +129,11 @@ $(".clickableandDraggable").click(function(){
         $startTime=$time1.replace(".",":");
         if($count%2===0)
         {
-          $("#time1").val($startTime.concat("am"));
+          $("#time1").val($startTime.concat("pm"));
         }
         else
         {
-        $("#time").val($startTime.concat("am"));
+        $("#time").val($startTime.concat("pm"));
        }
 
      }

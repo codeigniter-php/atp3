@@ -26,6 +26,7 @@
 				             <table class="table" id="myTable1">
 				             <thead>
 				                   <tr>
+				                        <th>Day</th>
 				                   		<th>Course Name</th>
 				                   		<th>Teacher Name</th>
 				                   		<th>Start Time</th>
@@ -41,6 +42,7 @@
 				              <tbody>
 									{info}
 									<tr>
+									    <td>{days_in_week}</td>
 										<td>{class_name}</td>
 										<td>{teacher_name}</td>
 										<td>{s_time}</td>
@@ -48,7 +50,7 @@
 										<td>{room_no}</td>
 										<td>{booking_status}</td>
 										<td>{date}</td>
-										<td><a href="/atp3/Admin/change/{class_id}" class="btn btn-primary">Accept</a></td>
+										<td>{accept_link}</td>
 
 								     </tr>
 									{/info}

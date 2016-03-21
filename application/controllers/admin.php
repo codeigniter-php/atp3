@@ -29,9 +29,14 @@ class Admin extends CI_Controller {
 					$d['t'.$i]="<div class='pius'>Regular Class</div>";
 
 				}
+				else if($d['t'.$i]=="M")
+				{
+					$d['t'.$i]="<div class='makeUp'>Make Up</div>";
+				}
+
 				else
 				{
-					$d['t'.$i]="<span class='clickableandDraggable' data-cell='$i' >No Class</span>";
+					$d['t'.$i]="<span>No Class</span>";
 
 				}
 
@@ -72,7 +77,11 @@ class Admin extends CI_Controller {
 							{
 								$d['t'.$i]="<div class='pius'>Regular Class</div>";
 							}
-							else
+							else if($d['t'.$i]=="M")
+							{
+								$d['t'.$i]="<div class='makeUp'>Make Up</div>";
+							}
+						    else
 							{
 								$d['t'.$i]="<span class='clickableandDraggable' data-cell='$i' >No Class</span>";
 
@@ -156,6 +165,10 @@ class Admin extends CI_Controller {
 						if($d['t'.$i]=="R")
 						{
 							$d['t'.$i]="<div class='pius'>Regular Class</div>";
+						}
+						else if($d['t'.$i]=="M")
+						{
+							$d['t'.$i]="<div class='makeUp'>Make Up</div>";
 						}
 						else
 						{
@@ -279,7 +292,24 @@ class Admin extends CI_Controller {
            $data['name']=$this->session->userdata('name');
 		
 
-			$data['info']=$this->m_login->getBooking();
+			$bookings = $this->m_login->getBooking();
+			$list = array();
+			foreach($bookings as $b)
+			{
+				if($b['booking_status'] == 'Pending')
+				{
+					$b['accept_link'] = '<a href="/atp3/Admin/change/'.$b['id'].'" class="btn btn-primary">Accept</a>';
+
+				}
+				else
+				{
+					$b['accept_link'] = 'Accepted';
+				}
+
+				array_push($list, $b);
+			}
+
+			$data['info']= $list;
 	       
 	        
 			
@@ -292,11 +322,11 @@ class Admin extends CI_Controller {
 
 	}
 
-	public function change($class_id)
+	public function change($id)
 	{
 		//var_dump($class_id);die();
 
-       $this->m_login->change($class_id);
+       $this->m_login->change($id);
        redirect('http://localhost/atp3/Admin/booking', 'refresh');
 
 	}

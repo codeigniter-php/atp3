@@ -73,6 +73,11 @@ $config = array(
 
            	       ),
                 'User/addMakeup' =>array(
+                	array(
+							'field' => 'day_of_week',
+							'label' => 'select days',
+							'rules' => 'callback_checkSelected1'
+						 ),
            	        array(
 							'field' => 'stime',
 							'label' => 'start time',

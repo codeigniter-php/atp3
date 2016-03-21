@@ -1,8 +1,7 @@
 <div class="container">
 	<div class="row">
 	       <div class="col-lg-8">
-	       	<img class="banner-img" src="<?php echo base_url();?>assets/img/aiub1.png?sz=12"
-                    alt="">
+	       	<img class="banner-img" src="<?php echo base_url();?>assets/img/aiub1.png?sz=12" alt="">
 	       </div>
 	       <div class="col-lg-4">
 				
